@@ -10,3 +10,9 @@ class Stuff(models.Model):
     created_date = models.DateField(auto_now=True)
     modified_date = models.DateField(auto_now_add=True)
     rate = models.FloatField()
+
+
+class Comment(models.Model):
+    comms = models.ForeignKey(Stuff, on_delete=models.CASCADE, null=True, related_name="comments")
+    text = models.TextField()
+    created_date = models.DateField(auto_now=True)

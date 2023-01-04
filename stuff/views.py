@@ -12,6 +12,18 @@ def stuff_view(request):
     if request.method == 'GET':
         stuff = Stuff.objects.all()
 
-    return render(request, 'stuff/stuff.html', context={
-        'stuff': stuff
-    })
+        return render(request, 'stuff/stuff.html', context={
+            'stuff': stuff
+        })
+
+
+def stuff_detail_view(request, id):
+    if request.method == 'GET':
+        stuff = Stuff.objects.get(id=id)
+
+        context = {
+            'stuff': stuff,
+            'comments': stuff.comments.all()
+        }
+
+        return render(request, 'stuff/detail.html', context=context)
