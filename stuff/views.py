@@ -1,21 +1,17 @@
-from django.shortcuts import HttpResponse
-from datetime import date
+from django.shortcuts import render
+from stuff.models import Stuff
 
 # Create your views here.
 
 
-def main(request):
-    return HttpResponse()
+def main_view(request):
+    return render(request, 'layouts/index.html')
 
 
-def hello(request):
-    return HttpResponse('Hello!')
+def stuff_view(request):
+    if request.method == 'GET':
+        stuff = Stuff.objects.all()
 
-
-def now_date(request):
-    return HttpResponse(date.today())
-
-
-def good_bye(request):
-    return HttpResponse('goodbye!')
-
+    return render(request, 'stuff/stuff.html', context={
+        'stuff': stuff
+    })
