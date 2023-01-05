@@ -3,18 +3,29 @@
 {% block content %}
     <style type="text/css">
         .stuff {
-            display: flex;
-            justify-content: space-between;
             width: 80%;
             margin-left: 10%;
-            flex-wrap: wrap;
             padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .stuff img{
+            width: 100%;
         }
     </style>
     <div class="stuff">
         {% for stuff in stuff %}
         <div class="card" style="width: 18rem;">
             <div class="card-body">
+                {% if stuff.image %}
+                    <img src="/media/{{ stuff.image }}/" alt="does not exist">
+                {% else %}
+                    <img src="/media/not%20(2).jpg">    
+                {% endif %}
                 <h5 class="card-title">{{ stuff.title }}</h5>
                 <h6 class="card-subtitle">{{ stuff.created_date }}</h6>
                 <a href="/stuff/{{ stuff.id }}/" class="card-link">More</a>

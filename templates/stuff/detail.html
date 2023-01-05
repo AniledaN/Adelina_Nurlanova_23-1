@@ -2,12 +2,12 @@
 
 {% block content %}
     <style type="text/css">
-        .post {
+        .stuff {
             width: 80%;
             margin-left: 10%;
         }
-        .post > h5 {
-            margin-top: 20px;
+        .stuff > h5 {
+            margin-top: 30px;
         }
         .dates {
             display: flex;
@@ -24,10 +24,25 @@
             background: #cbcbcb;
             margin-bottom: 10px;
         }
+        .stuff img{
+            width: 100%;
+        }
     </style>
     <div class="stuff">
+        {% if stuff.image %}
+            <img src="/media/{{ stuff.image }}" alt="does not exist">
+        {% else %}
+            <img src="/media/not%20(2).jpg">
+        {% endif %}
         <h1>{{ stuff.title }}</h1>
         <h5>{{ stuff.description }}</h5>
+        <div class="categories">
+            {% for category in categories %}
+                <div class="category">
+                    <h6>{{ hashtag.title }}</h6>
+                </div>
+            {% endfor %}
+        </div>
         <div class="dates">
             <h5>{{ stuff.created_date }}</h5>
             <h5>{{ stuff.modified_date }}</h5>

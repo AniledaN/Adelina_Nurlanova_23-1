@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from stuff.views import main_view, stuff_view, stuff_detail_view
+from stuff.views import main_view, stuff_view, stuff_detail_view, category_view
+from django.conf.urls.static import static
+from shop import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_view),
     path('stuff/', stuff_view),
-    path('stuff/<int:id>/', stuff_detail_view)
-
+    path('stuff/<int:id>/', stuff_detail_view),
+    path('categories/', category_view)
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
